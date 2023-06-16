@@ -1,0 +1,20 @@
+import os
+import shutil
+import datetime
+
+def backup_files(source_dir, target_dir):
+    backup_time = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+    backup_dir = os.path.join(target_dir, f'backup_{backup_time}')
+    
+    try:
+        shutil.copytree(source_dir, backup_dir)
+        print("文件备份成功。")
+    except Exception as e:
+        print(f"文件备份失败：{e}")
+
+print("文件备份工具")
+
+source_dir = input("请输入备份源目录：")
+target_dir = input("请输入备份目标目录：")
+
+backup_files(source_dir, target_dir)
